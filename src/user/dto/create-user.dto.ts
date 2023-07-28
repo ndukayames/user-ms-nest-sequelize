@@ -26,5 +26,5 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsIn(['user', 'admin'])
-  role: 'user' | 'admin';
+  role?: 'user' | 'admin';
 }

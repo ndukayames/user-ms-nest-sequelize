@@ -18,13 +18,7 @@ exports.UserModule = UserModule = __decorate([
     (0, common_1.Module)({
         imports: [sequelize_1.SequelizeModule.forFeature([user_entity_1.User])],
         controllers: [user_controller_1.UserController],
-        providers: [
-            user_service_1.UserService,
-            {
-                provide: 'USER_REPOSITORY',
-                useValue: user_entity_1.User,
-            },
-        ],
+        providers: [user_service_1.UserService],
         exports: [user_service_1.UserService],
     })
 ], UserModule);

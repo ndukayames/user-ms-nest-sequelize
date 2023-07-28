@@ -11,18 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminJwtStrategy = void 0;
 const common_1 = require("@nestjs/common");
-const config_1 = require("@nestjs/config");
 const passport_jwt_1 = require("passport-jwt");
 const passport_1 = require("@nestjs/passport");
 const user_service_1 = require("../../user/user.service");
 let AdminJwtStrategy = exports.AdminJwtStrategy = class AdminJwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy, 'adminJwt') {
-    constructor(configService, userService) {
+    constructor(userService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            secretOrKey: configService.get('JWT_SECRET'),
+            secretOrKey: 'secret',
         });
-        this.configService = configService;
         this.userService = userService;
     }
     async validate(payload) {
@@ -32,7 +30,6 @@ let AdminJwtStrategy = exports.AdminJwtStrategy = class AdminJwtStrategy extends
 };
 exports.AdminJwtStrategy = AdminJwtStrategy = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [config_1.ConfigService,
-        user_service_1.UserService])
+    __metadata("design:paramtypes", [user_service_1.UserService])
 ], AdminJwtStrategy);
 //# sourceMappingURL=admin-jwt.strategy.js.map
