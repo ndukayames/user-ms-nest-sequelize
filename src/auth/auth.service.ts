@@ -40,7 +40,6 @@ export class AuthService {
 
   async userSignin(dto: SigninDto) {
     // find user
-
     const user = await this.userService.findByEmail(dto.email);
 
     // check if user is found
@@ -101,7 +100,7 @@ export class AuthService {
 
     const token = await this.jwt.signAsync(payload, {
       expiresIn: '150m',
-      secret: this.config.get('JWT_SECRET'),
+      secret: 'secret',
     });
 
     return { access_token: token };
